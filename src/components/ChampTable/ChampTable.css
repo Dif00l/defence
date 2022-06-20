@@ -1,0 +1,29 @@
+#ChampTable{
+   
+    background-color: transparent;
+     
+    margin: 30px;
+   
+}
+
+#ChampTable>div{
+    text-align: left;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border: 1px solid transparent;
+    background-size: 100%;
+    background-Repeat:no-repeat;
+    margin: 5px;
+}
+
+#ChampTable>div>span{
+    background-Color: #000;
+    color: #FFF;
+    padding: 1px 1px;
+    font-weight: bold;
+    line-height: 1.5;
+    border: 1px solid #aaa;
+    display: inline;
+    padding: 2px;
+}
