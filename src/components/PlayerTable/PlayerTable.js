@@ -10,6 +10,7 @@ export default function PlayerTable(props){
     const [schwelle,setSchwelle] = useState(props.schwelle);
     const [ke,setKE] = useState(props.ke);
     const [rerender,initiateRerender] = useState(0);
+    const [stufe,setStufe] = useState("6");
 
     //Initial
     useEffect(async () => {     
@@ -49,7 +50,7 @@ export default function PlayerTable(props){
       useEffect(() => {      
         async function getChamps (){     
             try{ 
-                let response = await axios.get('https://dif00l.4lima.de/api/defence_api_test.php?action=allprio&ke='+ke+"&schwelle="+schwelle)
+                let response = await axios.get('https://dif00l.4lima.de/api/defence_api_test.php?action=allprio&ke='+ke+"&schwelle="+schwelle+"&stufe="+stufe)
                 let data = await response.data;
                 setChamps(data); 
                 if(champs.length > 0){
@@ -61,6 +62,23 @@ export default function PlayerTable(props){
         }
         getChamps();              
       }, [schwelle]);
+
+
+      useEffect(() => {      
+        async function getChamps (){     
+            try{ 
+                let response = await axios.get('https://dif00l.4lima.de/api/defence_api_test.php?action=allprio&ke='+ke+"&schwelle="+schwelle+"&stufe="+stufe)
+                let data = await response.data;
+                setChamps(data); 
+                if(champs.length > 0){
+                    rend();
+                }         
+            } catch(error) {
+                console.error(error.message);
+            }
+        }
+        getChamps();              
+      }, [stufe]);
 
    
     
@@ -219,12 +237,19 @@ export default function PlayerTable(props){
     const changeSchwelle = () => {
         setSchwelle(document.querySelector("#schwelleKE"+ke).value);       
       }
+      const changeStufe = () => {
+        setStufe(document.querySelector("#stufeKE"+ke).value);       
+      }
       
           var keCounter = "counter_"+props.ke;
         var tblID = "PlayerTableKE"+props.ke;     
         return(
             <div>
             <input id={"schwelleKE"+ke} defaultValue={schwelle} onBlur={changeSchwelle}/>
+            <select  id={"stufeKE"+ke} onChange={changeStufe}>
+                <option value="6">6</option>
+                <option value="5">5</option>
+            </select>
             <table id={tblID} className="PlayerTable" border="1" align="center" cellSpacing="0" cellPadding="0">
             <thead>
                 <tr>
