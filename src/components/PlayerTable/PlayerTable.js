@@ -6,10 +6,10 @@ export default function PlayerTable(props){
    
     const [players,setPlayers] = useState([]); 
     const [champs,setChamps] = useState([]);
-    const [getChamps,setGetChamps] = useState(0);
+   // const [getChamps] = useState(0);
     const [schwelle,setSchwelle] = useState(props.schwelle);
-    const [ke,setKE] = useState(props.ke);
-    const [rerender,initiateRerender] = useState(0);
+    const [ke] = useState(props.ke);
+   // const [rerender] = useState(0);
     const [stufe,setStufe] = useState("6");
 
     //Initial
@@ -22,21 +22,7 @@ export default function PlayerTable(props){
              console.error(error.message);
           }        
       }, []);
-      /*
-      useEffect(() =>{ 
-        async function getChamps (){     
-            try{ 
-                let response = await axios.get('https://dif00l.4lima.de/api/defence_api_test.php?action=allprio&ke='+ke+"&schwelle="+schwelle)
-                let data = await response.data;
-                setChamps(data); 
-            } catch(error) {
-                console.error(error.message);
-            }
-        }
-        getChamps();                  
-      }, []);
-   
-     */
+      
       useEffect(async () => {      
         try{            
             if(champs.length > 0){
